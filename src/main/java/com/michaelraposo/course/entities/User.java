@@ -3,10 +3,24 @@ package com.michaelraposo.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+// Entidade
+@Entity
+//Nomeando a tabela que ele vai ser identificado
+@Table(name = "tb_user")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	//Declarando que esse objeto é um ID
+	@Id
+	//Declarando que deve preenche automaticamente
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String email;
