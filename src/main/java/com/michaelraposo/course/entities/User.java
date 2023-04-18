@@ -1,12 +1,15 @@
 package com.michaelraposo.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 // Entidade
@@ -17,15 +20,25 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	//Declarando que esse objeto é um ID
+	// Declarando que esse objeto é um ID
 	@Id
-	//Declarando que deve preenche automaticamente
+	// Declarando que deve preenche automaticamente
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String email;
 	private String phone;
 	private String password;
+
+	//Significa que um cliente pode ter muitos pedidos
+	//UM PARA MUITOS
+	//Como ele está mapeado do outro lado
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList();
+
+	public List<Order> getOrders() {
+		return orders;
+	}
 
 	public User() {
 		super();
