@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,9 @@ public class Order implements Serializable {
 	// Declarando que deve preenche automaticamente
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	//Formata a data
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 
 	//Significa que pode ter muitos pedidos para um cliente
